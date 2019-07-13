@@ -4,6 +4,7 @@ import (
 	"math/rand"
 )
 
+// Type Suit represents a suit
 type Suit byte
 
 const (
@@ -26,22 +27,24 @@ type Card string
 // Function New creates a new card from a given suit and value
 func New(value uint8, suit Suit) Card {
 	valuestr := map[uint8]string{
-		1: "A",
-		2: "2",
-		3: "3",
-		4: "4",
-		5: "5",
-		6: "6",
-		7: "7",
-		8: "8",
-		9: "9",
+		1:  "A",
+		2:  "2",
+		3:  "3",
+		4:  "4",
+		5:  "5",
+		6:  "6",
+		7:  "7",
+		8:  "8",
+		9:  "9",
 		10: "10",
 		11: "J",
 		12: "Q",
 		13: "K",
 	}[value]
 
-	if valuestr == "" { valuestr = "0" }
+	if valuestr == "" {
+		valuestr = "0"
+	}
 	return Card(valuestr + suit.String())
 }
 
@@ -59,29 +62,28 @@ func (c Card) Suit() Suit {
 	}
 }
 
-// Method Value returns the face value of the card.
-// Ace is represented by 1; Jack, Queen, and King are represented by 11, 12, and 13, respectively
-// If the card is not valid 0 is returned
+// Method Value returns the face value of the card, or 0 if there is none.
+// Ace is represented by 1; Jack, Queen, and King are represented by 11, 12, and 13, respectively.
 func (c Card) Value() uint8 {
 	if len(c) < 2 {
 		return 0
 	}
 	value := string(c[:len(c)-1])
 	return map[string]uint8{
-		"1": 1,
-		"A": 1,
-		"2": 2,
-		"3": 3,
-		"4": 4,
-		"5": 5,
-		"6": 6,
-		"7": 7,
-		"8": 8,
-		"9": 9,
+		"1":  1,
+		"A":  1,
+		"2":  2,
+		"3":  3,
+		"4":  4,
+		"5":  5,
+		"6":  6,
+		"7":  7,
+		"8":  8,
+		"9":  9,
 		"10": 10,
-		"J": 11,
-		"Q": 12,
-		"K": 13,
+		"J":  11,
+		"Q":  12,
+		"K":  13,
 	}[value]
 }
 
