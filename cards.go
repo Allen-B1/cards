@@ -22,8 +22,9 @@ func (s Suit) String() string {
 	return string([]byte{byte(s)})
 }
 
-// Type Card represents a playing card
-// An unknown card is represented by Card("")
+// Type Card represents a playing card.
+//
+// An unknown card is represented by either Card("") or Card("?")
 type Card string
 
 // Function New creates a new card from a given suit and value
