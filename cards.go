@@ -1,3 +1,5 @@
+// Package cards provides a set of utilities for working with playing cards.
+
 package cards
 
 import (
@@ -89,6 +91,9 @@ func (c Card) Value() uint8 {
 
 // Method String() returns the string representation of a card. Use c.String() instead of string(c) when possible.
 func (c Card) String() string {
+	if string(c) == "" {
+		return "?"
+	}
 	return string(c)
 }
 
