@@ -1,5 +1,4 @@
 // Package cards provides a set of utilities for working with playing cards.
-
 package cards
 
 import (
