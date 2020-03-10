@@ -5,7 +5,7 @@ import (
 	"math/rand"
 )
 
-// Type Suit represents a suit
+// Type Suit represents a suit.
 type Suit byte
 
 const (
@@ -13,8 +13,6 @@ const (
 	Diamonds Suit = 'D'
 	Hearts   Suit = 'H'
 	Spades   Suit = 'S'
-
-//	Suit(0) Suit = 0
 )
 
 func (s Suit) String() string {
@@ -23,8 +21,12 @@ func (s Suit) String() string {
 
 // Type Card represents a playing card.
 //
-// An unknown card is represented by either Card("") or Card("?")
+// The zero value for a Card is the unknown card.
 type Card string
+
+const (
+	Unknown Card = Card("")
+)
 
 // Function New creates a new card from a given suit and value
 func New(value uint8, suit Suit) Card {
@@ -50,7 +52,7 @@ func New(value uint8, suit Suit) Card {
 	return Card(valuestr + suit.String())
 }
 
-// Method Suit returns the suit if there is any or Suit(0) otherwise
+// Method Suit returns the suit if there is any or Suit(0) otherwise.
 func (c Card) Suit() Suit {
 	if len(c) < 2 {
 		return Suit(0)
@@ -89,7 +91,9 @@ func (c Card) Value() uint8 {
 	}[value]
 }
 
-// Method String() returns the string representation of a card. Use c.String() instead of string(c) when possible.
+// Method String() returns the display representation of a card.
+//
+// Note than Card(c.String()) == c is not necessarily true.
 func (c Card) String() string {
 	if string(c) == "" {
 		return "?"
@@ -97,10 +101,10 @@ func (c Card) String() string {
 	return string(c)
 }
 
-// Type Deck represents a deck of playing cards
+// Type Deck represents a deck of playing cards.
 type Deck []Card
 
-// Function FullDeck creates and returns a full deck of cards
+// Function FullDeck creates and returns a full deck of cards.
 func FullDeck() Deck {
 	deck := make(Deck, 0, 52)
 	for value := uint8(1); value <= 13; value++ {
@@ -112,7 +116,7 @@ func FullDeck() Deck {
 	return deck
 }
 
-// Method Shuffle shuffles a deck
+// Method Shuffle shuffles a deck using rand.Shuffle.
 func (d Deck) Shuffle() {
 	rand.Shuffle(len(d), func(i, j int) {
 		d[i], d[j] = d[j], d[i]
